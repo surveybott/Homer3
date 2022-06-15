@@ -111,7 +111,7 @@ for kk=1:length(data_dod)
         ARSignal = WaveletAnalysis(StatWT,L,'db2',iqr,SignalLength);  % Apply artifact removal
         ARSignal = ARSignal/NormCoef+DCVal;
         
-        dodWavelet(:,idx_ch) = ARSignal(1:length(dod));
+        dodWavelet(:,idx_ch) = ARSignal(1:size(dod,1));
     end
     data_dod(kk).SetDataTimeSeries(dodWavelet);
     
