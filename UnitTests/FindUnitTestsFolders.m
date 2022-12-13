@@ -1,4 +1,8 @@
 function groupFolders = FindUnitTestsFolders()
+global logger
+global SCRAMBLE
+
+logger = InitLogger(logger);
 
 % Find all the group data folders with processOpt_default_homer2.cfg
 % Those are the folders that can be unit tested
@@ -16,7 +20,14 @@ for ii = 1:length(dirs)
         continue;
     end    
     groupFolders{kk} = dirs(ii).name;
+    logger.Write('Found unit test folder %s\n', pathfull);
+    
+    if SCRAMBLE
+        ScrambleChannelsForGroup(pathfull);
+    end
     kk = kk+1;
 end
 groupFolders(kk:end) = [];
+
+logger.Write('\n');
 
